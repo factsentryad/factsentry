@@ -62,9 +62,9 @@ nextFactBtn.addEventListener("click", () => {
 // Video data sample (replace with your real videos)
 const videoGrid = document.getElementById("video-grid");
 const videos = [
-  { id: "YOUTUBE_VIDEO_ID_1", title: "Short Fact 1", type: "shorts" },
-  { id: "YOUTUBE_VIDEO_ID_2", title: "Full Video 1", type: "full" },
-  { id: "YOUTUBE_VIDEO_ID_3", title: "Short Fact 2", type: "shorts" },
+  { id: "https://youtube.com/shorts/FFRF9iicdgY?feature=share", title: "Short Fact 1", type: "shorts" },
+  { id: "https://youtu.be/RPRi6Xgoigw", title: "Full Video 1", type: "full" },
+  { id: "https://youtube.com/shorts/MzZZqSffQ-M?feature=share", title: "Short Fact 2", type: "shorts" },
 ];
 
 // Filter select
@@ -156,3 +156,4 @@ function type() {
   setTimeout(type, isDeleting ? 100 : 150);
 }
 type();
+
