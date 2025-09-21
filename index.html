@@ -7,146 +7,144 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="bg-animated"></div>
-
   <header class="site-header">
     <div class="brand">
       <img id="site-logo" src="FACTSENTRYLOGO.png" alt="Fact Sentry logo" />
-      <div class="brand-text">
-        <h1>Fact Sentry</h1>
-        <div class="sub">Facts • Shorts • Videos</div>
-      </div>
+      <div class="brand-name">Fact Sentry</div>
     </div>
 
-    <nav class="nav">
-      <ul>
-        <li><a href="#" data-target="home" class="nav-link active">Home</a></li>
-        <li><a href="#" data-target="videos" class="nav-link">Videos</a></li>
-        <li><a href="#" data-target="about" class="nav-link">About</a></li>
-        <li><a href="#" data-target="contact" class="nav-link">Contact</a></li>
-      </ul>
-
-      <div class="controls">
-        <a id="yt-channel" href="http://www.youtube.com/@FactSentry-AD" target="_blank" rel="noopener" class="btn btn-ghost">YouTube Channel</a>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">🌓</button>
-      </div>
+    <nav class="main-nav" aria-label="Main navigation">
+      <button class="nav-btn" data-target="home">Home</button>
+      <button class="nav-btn" data-target="videos">Videos</button>
+      <button class="nav-btn" data-target="about">About</button>
+      <button class="nav-btn" data-target="contact">Contact</button>
+      <a class="nav-link yt" href="https://youtube.com/@factsentry-ad?si=J5dZNiuk3e2f8-pM" target="_blank" rel="noopener">YouTube</a>
     </nav>
+
+    <div class="controls">
+      <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
+    </div>
   </header>
 
-  <main id="main">
+  <main id="app">
     <!-- HOME -->
     <section id="home" class="page page--active">
       <div class="hero">
         <div class="hero-left">
-          <h2 class="welcome">Welcome to</h2>
-          <h1 class="typewrap"><span id="type-text"></span><span class="cursor">|</span></h1>
-          <p class="lead">Short, crisp facts and bite-sized videos — made by two friends for curious minds.</p>
+          <h1 class="hero-title">Welcome to <span>Fact Sentry</span></h1>
+          <p class="hero-sub">Shorts • Facts • Curiosities — bite-sized and memorable.</p>
 
-          <div class="home-cta">
-            <button id="explore-videos" class="btn">Explore Videos</button>
-            <a id="subscribe-yt" class="btn btn-outline" href="#" target="_blank">Subscribe</a>
+          <div class="hero-ctas">
+            <button id="cta-videos" class="btn btn-primary">Explore Videos</button>
+            <a class="btn btn-outline" href="https://youtube.com/@factsentry-ad?si=J5dZNiuk3e2f8-pM" target="_blank" rel="noopener">Subscribe on YouTube</a>
+          </div>
+
+          <div class="facts-rotator" aria-live="polite">
+            <div class="facts-window">
+              <div id="fact-current" class="fact-item">Loading fact...</div>
+            </div>
+            <div class="fact-controls">
+              <button id="prev-fact" class="btn small">◀ Prev</button>
+              <button id="next-fact" class="btn small">Next ▶</button>
+            </div>
           </div>
         </div>
 
         <div class="hero-right">
-          <div class="fact-card">
-            <div class="label">Do you know?</div>
-            <div id="fact-text" class="fact-text">Loading facts…</div>
-            <button id="next-fact" class="btn small">Next fact</button>
+          <div class="card stats">
+            <div class="stat-num" id="stat-views">12.3K+</div>
+            <div class="stat-label">Facts viewed</div>
           </div>
 
-          <div class="stats card">
-            <div class="stat-num" id="views-count">12,345+</div>
-            <div class="stat-label">Facts viewed</div>
+          <div class="card about-cta">
+            <h3>About the Channel</h3>
+            <p>Fact Sentry brings short, researched facts with crisp storytelling. Run by Divyansh & Aditya.</p>
+            <button class="btn" data-target="about">Learn more</button>
           </div>
         </div>
       </div>
 
-      <section class="feature-strip">
-        <div class="feature card">Verified research</div>
-        <div class="feature card">Shorts optimized</div>
-        <div class="feature card">Subscribe &amp; learn</div>
-      </section>
+      <div class="feature-strip">
+        <div class="feature">🔎 Researched</div>
+        <div class="feature">⚡ Short & Crisp</div>
+        <div class="feature">🎯 Easy to Remember</div>
+      </div>
     </section>
 
     <!-- VIDEOS -->
     <section id="videos" class="page">
-      <div class="section-inner">
-        <h2>Videos &amp; Shorts</h2>
-
-        <div class="filter-row">
-          <label>Show:</label>
-          <select id="filter-select">
+      <div class="section-header">
+        <h2>Videos & Shorts</h2>
+        <div class="video-tools">
+          <label for="video-filter">Show:</label>
+          <select id="video-filter">
             <option value="all">All</option>
             <option value="shorts">Shorts</option>
-            <option value="full">Full videos</option>
+            <option value="videos">Full videos</option>
           </select>
+          <input id="video-search" placeholder="Search title / id (optional)" />
         </div>
-
-        <div id="video-grid" class="video-grid"></div>
       </div>
+
+      <div id="video-grid" class="video-grid" aria-live="polite">
+        <!-- JS inserts thumbnail cards here; clicking Play replaces with iframe -->
+      </div>
+      <div class="video-hint muted">Tip: Click a thumbnail to load & play the video in-place.</div>
     </section>
 
     <!-- ABOUT -->
     <section id="about" class="page">
-      <div class="section-inner">
+      <div class="about-inner">
         <h2>About Fact Sentry</h2>
         <p>
-          Fact Sentry began as conversations between two school friends, <strong>Divyansh Gupta</strong> and <strong>Aditya Maurya</strong>.
-          Their shared curiosity for surprising facts and bite-sized learning led to creating short videos that are both entertaining and informative.
-          We research every fact, cite sources where possible, and prioritize clarity and brevity. Our goal is to spark curiosity — one short fact at a time.
-          <br><br>
-          Whether it's a historical oddity, a science tidbit, or a surprising statistic — we package the fact and give you the context so you remember it. Join us on the journey of learning faster, smarter, and with more fun.
+          Fact Sentry is the passion project of two friends — <strong>Divyansh Gupta</strong> and <strong>Aditya Maurya</strong>.
+          Since their school days they have loved collecting surprising facts, checking sources, and presenting them in short,
+          digestible videos. The channel focuses on curiosity, accuracy and memorable presentation. This website showcases
+          the best of the channel: shorts, long-form videos, and a running fact collection.
         </p>
+
+        <ul class="about-list">
+          <li>Shorts optimized for quick learning</li>
+          <li>Researched facts with references (when possible)</li>
+          <li>Friendly, repeatable formats people remember</li>
+        </ul>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="page">
-      <div class="section-inner contact-inner">
-        <h2>Contact / Send Query</h2>
-
-        <form id="contact-form" class="contact-form">
-          <label>
-            Name
-            <input type="text" name="from_name" required />
-          </label>
-          <label>
-            Email
-            <input type="email" name="reply_to" required />
-          </label>
-          <label>
-            Message
-            <textarea name="message" rows="6" required></textarea>
-          </label>
-
-          <div class="form-row">
-            <button type="submit" class="btn">Send Message</button>
-            <button type="button" id="mail-fallback" class="btn btn-outline">Open Email App</button>
-          </div>
-
-          <div id="form-status" class="muted"></div>
-        </form>
+      <div class="contact-inner">
+        <div class="contact-card card">
+          <h2>Contact / Send a Query</h2>
+          <form id="contact-form">
+            <label>Name<input type="text" name="from_name" required /></label>
+            <label>Email<input type="email" name="reply_to" required /></label>
+            <label>Message<textarea name="message" rows="6" required></textarea></label>
+            <div class="form-row">
+              <button type="submit" class="btn btn-primary">Send Message</button>
+              <button type="button" id="mail-fallback" class="btn btn-outline">Open Email App</button>
+            </div>
+            <div id="form-status" class="muted"></div>
+          </form>
+        </div>
 
         <aside class="contact-info card">
-          <h4>Contact details</h4>
+          <h3>Contact details</h3>
           <p>Email: <a href="mailto:factsentryad@gmail.com">factsentryad@gmail.com</a></p>
           <p>Phone: <a href="tel:+919569945815">+91 95699 45815</a></p>
+          <p class="muted">Tip: set up EmailJS keys in app.js to receive messages directly.</p>
         </aside>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-inner">
-      <div>© <span id="year"></span> Fact Sentry</div>
-      <div class="muted">Made with ♥ by Divyansh &amp; Aditya</div>
-    </div>
+    <div>© <span id="year"></span> Fact Sentry</div>
+    <div class="muted">Made with ❤ by Divyansh & Aditya</div>
   </footer>
 
-  <!-- EmailJS SDK (for contact form) -->
+  <!-- EmailJS (optional) -->
   <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
-
